@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CODEMATE{% endblock %}</title>
+
+    <!-- Site Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Our Custom Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Block for page-specific styles (e.g., Bootstrap on login page) -->
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <!-- Container for floating toast messages -->
+    <div id="toast-container"></div>
+
+    {% include 'header.html' %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include 'footer.html' %}
+
+    <!-- Core JavaScript for UI (Theme, Nav, etc.) -->
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    
+    <!-- Firebase SDKs (Loaded on every page for auth) -->
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase Configuration and Main Auth Logic -->
+    <script>
+        // Pass config from Flask backend to frontend JavaScript
+        const firebaseConfig = {{ firebase_config | tojson | safe }};
+    </script>
+    <script src="{{ url_for('static', filename='js/firebase-auth.js') }}" defer></script>
+
+    <!-- Block for page-specific scripts (e.g., compiler.js, playground.js) -->
+    {% block scripts %}{% endblock %}
+</body>
+</html>

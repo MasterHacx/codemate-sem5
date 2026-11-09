@@ -1,0 +1,54 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Manage Quizzes</h2>
+        <a href="{{ url_for('admin.add_quiz') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add New Quiz
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <p>Welcome to the Admin Panel. Here you can manage all the quizzes on CODEMATE.</p>
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Lesson</th>
+                        <th>Topic</th>
+                        <th>No. of Questions</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--  Dynamic Loop to show real quiz data -->
+                    {% for quiz in quizzes %}
+                    <tr>
+                        <td>{{ quiz.category | title }}</td>
+                        <td>{{ quiz.lesson | title }}</td>
+                        <td>{{ quiz.topic | title }}</td>
+                        <td>{{ quiz.question_count }}</td>
+                        <td>
+                           
+<a href="{{ url_for('admin.edit_quiz', category=quiz.category, lesson=quiz.lesson, topic=quiz.topic) }}"
+   class="btn btn-sm btn-secondary">Edit</a>
+<a href="{{ url_for('admin.delete_quiz', category=quiz.category, lesson=quiz.lesson, topic=quiz.topic) }}"
+   class="btn btn-sm btn-danger"
+   onclick="return confirm('Are you sure you want to delete this quiz? This cannot be undone.')">Delete</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">No quizzes found in the database.</td>
+                    </tr>
+                    {% endfor %}
+                    <!-- END OF DYNAMIC LOOP-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

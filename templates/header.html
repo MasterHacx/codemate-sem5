@@ -1,0 +1,32 @@
+<header class="main-header">
+    <div class="container">
+        <h1 class="logo"><a href="/">CODEMATE</a></h1>
+
+        <div class="header-right">
+            <nav class="main-nav">
+                <ul>
+                    <li class="mobile-only-nav-item"><a href="/">Home</a></li>
+                    <li><a href="/#tutorials-section">Tutorials</a></li>
+                    <li><a href="/#compilers-section">Compilers</a></li>
+                    <li><a href="/playground" style="color: tomato;">Playground</a></li>
+                    
+                    <!-- State 1: Visible when user is logged OUT -->
+                    <li id="nav-login-link" class="nav-login-item">
+                        <a href="/login" class="btn btn-primary">Login</a>
+                    </li>
+
+                    <!-- State 2: Visible when user is logged IN (controlled by JS) -->
+                    <li id="nav-user-controls" class="nav-login-item" style="display: none;">
+                        <a href="/dashboard" class="btn btn-secondary" style="margin-right: 10px;" >Dashboard</a>
+                        <button id="logout-button" class="btn btn-primary">Logout</button>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header-controls">
+                <button class="theme-toggle" aria-label="Toggle dark/light theme"><i class="fas fa-moon"></i></button>
+                <button class="nav-toggle" aria-label="toggle navigation"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </div>
+</header>

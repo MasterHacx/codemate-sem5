@@ -1,0 +1,67 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %}Edit Quiz{% endblock %}
+
+{% block content %}
+    <h2>Edit Quiz: {{ quiz.title }}</h2>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+                <!-- show existing IDs but make them readonly -->
+                <div class="row mb-3">
+                    <div class="col-md-4"><label>Category</label><input type="text" class="form-control" value="{{ ids.category }}" readonly></div>
+                    <div class="col-md-4"><label>Lesson</label><input type="text" class="form-control" value="{{ ids.lesson }}" readonly></div>
+                    <div class="col-md-4"><label>Topic</label><input type="text" class="form-control" value="{{ ids.topic }}" readonly></div>
+                </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Quiz Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ quiz.title }}" required>
+                </div>
+                <!-- Add Order field  -->
+                <div class="mb-3">
+                    <label for="order" class="form-label">Display Order</label>
+                    <input type="number" class="form-control" id="order" name="order" value="{{ quiz.order | default(99) }}" required>
+                </div>
+                <hr>
+                <div id="questions-container">
+                    <!-- Pre-populate existing questions with a Jinja loop -->
+                    {% for question in quiz.questions %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h6 class="card-title">Question {{ loop.index }}</h6>
+                            <div class="mb-2">
+                                <label class="form-label">Question Text</label>
+                                <input type="text" class="form-control" name="q{{ loop.index0 }}_text" value="{{ question.question }}" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-2">
+                                    <label class="form-label">Option 1 (Correct Answer)</label>
+                                    <input type="text" class="form-control" name="q{{ loop.index0 }}_opt1" value="{{ question.answer }}" required>
+                                </div>
+                                {% set other_options = [] %}
+                                {% for opt in question.options if opt != question.answer %}
+                                    {% set _ = other_options.append(opt) %}
+                                {% endfor %}
+                                <div class="col-md-6 mb-2">
+                                    <label class="form-label">Option 2</label>
+                                    <input type="text" class="form-control" name="q{{ loop.index0 }}_opt2" value="{{ other_options[0] }}" required>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label class="form-label">Option 3</label>
+                                    <input type="text" class="form-control" name="q{{ loop.index0 }}_opt3" value="{{ other_options[1] }}" required>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label class="form-label">Option 4</label>
+                                    <input type="text" class="form-control" name="q{{ loop.index0 }}_opt4" value="{{ other_options[2] }}" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary">Update Quiz</button>
+                <a href="{{ url_for('admin.dashboard') }}" class="btn btn-link">Cancel</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

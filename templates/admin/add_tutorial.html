@@ -1,0 +1,52 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Add New Tutorial{% endblock %}
+
+{% block content %}
+    <h2>Add a New Tutorial</h2>
+    <p>Use this form to add a new Markdown tutorial to the database.</p>
+    <hr>
+
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+                <!-- Row for Category, Lesson, Topic -->
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="category" class="form-label">Category (e.g., python)</label>
+                        <input type="text" class="form-control" id="category" name="category" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="lesson" class="form-label">Lesson (e.g., basics)</label>
+                        <input type="text" class="form-control" id="lesson" name="lesson" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="topic" class="form-label">Topic ID (e.g., data-types)</label>
+                        <input type="text" class="form-control" id="topic" name="topic" required>
+                    </div>
+                    <!-- ... Topic ID div ... -->
+<div class="col-md-4">
+    <label for="order" class="form-label">Display Order (e.g., 1, 2)</label>
+    <input type="number" class="form-control" id="order" name="order" required>
+</div>
+                </div>
+                
+                <!-- Topic Title -->
+                <div class="mb-3">
+                    <label for="title" class="form-label">Tutorial Title (e.g., Data Types in Python)</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+                
+                <!-- Markdown Content -->
+                <div class="mb-3">
+                    <label for="content" class="form-label">Markdown Content</label>
+                    <textarea class="form-control" id="content" name="content" rows="15" placeholder="Write your Markdown here... # Heading, **bold**, etc." required></textarea>
+                </div>
+                
+                <hr>
+                <button type="submit" class="btn btn-primary">Save Tutorial</button>
+                <a href="{{ url_for('admin.manage_tutorials') }}" class="btn btn-link">Cancel</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

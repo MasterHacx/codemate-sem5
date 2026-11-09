@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Secrets & Credentials
+.env
+serviceAccountKey.json
+google-services*.json
+*.pem
+*.key
+
+# Firebase
+firebase-*.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PDFs/Docs (large files)
+*.pdf
+*.docx
+*.wps

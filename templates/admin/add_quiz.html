@@ -1,0 +1,103 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Add New Quiz{% endblock %}
+
+{% block content %}
+    <h2>Add a New Quiz</h2>
+    <p>Use this form to add a new quiz topic to the database.</p>
+    <hr>
+
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+                <!-- Row for Category, Lesson, Topic -->
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="category" class="form-label">Category (e.g., python)</label>
+                        <input type="text" class="form-control" id="category" name="category" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="lesson" class="form-label">Lesson (e.g., basics)</label>
+                        <input type="text" class="form-control" id="lesson" name="lesson" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="topic" class="form-label">Topic ID (e.g., data-types)</label>
+                        <input type="text" class="form-control" id="topic" name="topic" required>
+                    </div>
+                    <!-- ... Topic ID div ... -->
+<div class="col-md-4">
+    <label for="order" class="form-label">Display Order (e.g., 1, 2)</label>
+    <input type="number" class="form-control" id="order" name="order" required>
+</div>
+                </div>
+                
+                <!-- Topic Title -->
+                <div class="mb-3">
+                    <label for="title" class="form-label">Quiz Title (e.g., Data Types in Python)</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+                
+                <hr>
+
+                <!-- Dynamic Questions Area -->
+                <div id="questions-container">
+                    <!-- Questions will be added here by JavaScript -->
+                </div>
+
+                <button type="button" id="add-question-btn" class="btn btn-secondary mt-2">Add Question</button>
+                <hr>
+                <button type="submit" class="btn btn-primary">Save Quiz</button>
+                <a href="{{ url_for('admin.dashboard') }}" class="btn btn-link">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('questions-container');
+        const addQuestionBtn = document.getElementById('add-question-btn');
+        let questionIndex = 0;
+
+        const addQuestion = () => {
+            const questionId = `q${questionIndex}`;
+            const questionHTML = `
+                <div class="card mb-3" id="${questionId}">
+                    <div class="card-body">
+                        <h6 class="card-title">Question ${questionIndex + 1}</h6>
+                        <div class="mb-2">
+                            <label for="${questionId}_text" class="form-label">Question Text</label>
+                            <input type="text" class="form-control" name="${questionId}_text" required>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label for="${questionId}_opt1" class="form-label">Option 1 (Correct Answer)</label>
+                                <input type="text" class="form-control" name="${questionId}_opt1" placeholder="Correct answer goes here" required>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="${questionId}_opt2" class="form-label">Option 2</label>
+                                <input type="text" class="form-control" name="${questionId}_opt2" required>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="${questionId}_opt3" class="form-label">Option 3</label>
+                                <input type="text" class="form-control" name="${questionId}_opt3" required>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="${questionId}_opt4" class="form-label">Option 4</label>
+                                <input type="text" class="form-control" name="${questionId}_opt4" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', questionHTML);
+            questionIndex++;
+        };
+
+        addQuestionBtn.addEventListener('click', addQuestion);
+        
+        // Add one question by default
+        addQuestion();
+    });
+</script>
+{% endblock %}

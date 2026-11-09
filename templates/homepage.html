@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% block title %}CODEMATE - Interactive Code Learning Platform{% endblock %}
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+<div class="container">
+<h2>Learn and Master Coding with <span class="highlight">CODEMATE</span></h2>
+<p>Interactive tutorials, a real-time code playground, and intelligent AI assistance for Python, Java, other technologies, and more.</p>
+<div class="hero-ctas">
+<a href="/#tutorials-section" class="btn btn-primary btn-large">Start Learning</a>
+<a href="/playground" class="btn btn-secondary btn-large">Try Playground</a>
+</div>
+</div>
+</section>
+<!-- Core Tutorials Section -->
+<section class="language-cards-section" id="tutorials-section">
+    <div class="container">
+        <h2>Core Language Tutorials</h2>
+        <div class="language-grid">
+            <a href="/tutorials/python" class="language-card">
+                    <div class="language-icon">
+                        <img src="{{ url_for('static', filename='img/python.svg') }}" alt="Python Icon">
+                    </div>
+                    <div class="language-name">Python</div>
+                </a>
+                <a href="/tutorials/cpp" class="language-card">
+                    <div class="language-icon">
+                        <img src="{{ url_for('static', filename='img/cpp.svg') }}" alt="C++ Icon">
+                    </div>
+                    <div class="language-name">C++</div>
+                </a>
+                <a href="/tutorials/java" class="language-card">
+                    <div class="language-icon">
+                        <img src="{{ url_for('static', filename='img/java.svg') }}" alt="Java Icon">
+                    </div>
+                    <div class="language-name">Java</div>
+                </a>
+                <a href="/tutorials/kotlin" class="language-card">
+                    <div class="language-icon">
+                        <img src="{{ url_for('static', filename='img/kotlin.svg') }}" alt="kotlin Icon">
+                    </div>
+                    <div class="language-name">Kotlin</div>
+                </a>
+                <a href="/tutorials/html" class="language-card">
+                    <div class="language-icon">
+                        <img src="{{ url_for('static', filename='img/html5.svg') }}" alt="html Icon">
+                    </div>
+                    <div class="language-name">Html</div>
+                </a>
+                <a href="/tutorials/javascript" class="language-card">
+                    <div class="language-icon">
+                        <img src="{{ url_for('static', filename='img/javascript.svg') }}" alt="javascript Icon">
+                    </div>
+                    <div class="language-name">Javascript</div>
+                </a>
+                <a href="/tutorials/go" class="language-card">
+                    <div class="language-icon">
+                        <img src="{{ url_for('static', filename='img/go.svg') }}" alt="go Icon">
+                    </div>
+                    <div class="language-name">GO Lang</div>
+                </a>
+                
+        </div>
+    </div>
+</section>
+
+<!-- Other Topics Section -->
+<section class="language-cards-section">
+    <div class="container">
+        <h2>Explore Other Tutorials</h2>
+        <div class="language-grid">
+            <a href="/tutorials/programming" class="language-card">
+                <div class="language-icon"><img src="{{ url_for('static', filename='img/programming.svg') }}" alt="Programming Concepts"></div>
+                <div class="language-name">Intro to Programming</div>
+            </a>
+            <a href="/tutorials/genai" class="language-card">
+                <div class="language-icon"><img src="{{ url_for('static', filename='img/genai.svg') }}" alt="Generative AI"></div>
+                <div class="language-name">Generative AI</div>
+            </a>
+            <a href="/tutorials/markdown" class="language-card">
+                <div class="language-icon"><img src="{{ url_for('static', filename='img/markdown.svg') }}" alt="Markdown"></div>
+                <div class="language-name">Markdown</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Compilers Section -->
+<section class="language-cards-section" id="compilers-section">
+    <div class="container">
+        <h2>Online Code Compilers</h2>
+        <p>Write, compile, and run code directly in your browser, supporting over 10 languages.</p>
+        <div class="language-grid">
+            <a href="/compiler/python" class="language-card"><div class="feature-icon"><i class="fas fa-terminal"></i></div><div class="language-name">Python</div></a>
+            <a href="/compiler/c" class="language-card"><div class="feature-icon" style="margin-bottom: 15px;"><i class="fas fa-terminal"></i></div><div class="language-name">C Compiler</div></a>
+            <a href="/compiler/cpp" class="language-card"><div class="feature-icon"><i class="fas fa-terminal"></i></div><div class="language-name">C++</div></a>
+            <a href="/compiler/java" class="language-card"><div class="feature-icon"><i class="fas fa-terminal"></i></div><div class="language-name">Java</div></a>
+            <a href="/compiler/javascript" class="language-card"><div class="feature-icon"><i class="fas fa-terminal"></i></div><div class="language-name">JavaScript</div></a>
+            <a href="/compiler/go" class="language-card"><div class="feature-icon"><i class="fas fa-terminal"></i></div><div class="language-name">Go</div></a>
+            <a href="/compiler/rust" class="language-card"><div class="feature-icon"><i class="fas fa-terminal"></i></div><div class="language-name">Rust</div></a>
+            <a href="/compiler/kotlin" class="language-card"><div class="feature-icon"><i class="fas fa-terminal"></i></div><div class="language-name">Kotlin</div></a>
+            <a href="/compiler/swift" class="language-card"><div class="feature-icon"><i class="fas fa-terminal"></i></div><div class="language-name">Swift</div></a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <h2>Overcome your fear of coding with <span class="highlight">CODEMATE</span> features</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-laptop-code"></i></div>
+                <h4>Structured Tutorials</h4>
+                <p>Follow clear, step-by-step lessons designed for beginners and experts alike.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-play-circle"></i></div>
+                <h4>Live Code Playground</h4>
+                <p>Instantly practice what you learn with our integrated, multi-language compiler.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                <h4>AI-Powered Assistance</h4>
+                <p>Get instant help, debug code, and understand complex concepts with <span class="highlight">CODEMATE</span> AI.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+                <h4>Interactive Quizzes</h4>
+                <p>Test your knowledge after every topic with our dynamic quiz system.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <h4>Track Your Progress</h4>
+                <p>Create a free account to save your completed lessons and quiz scores.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-globe"></i></div>
+                <h4>Free & Accessible</h4>
+                <p>All content is freely available to everyone, with or without an account.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final Call to Action Section -->
+<section class="cta-section">
+    <div class="container">
+        <h2>Ready to Start Your Coding Journey?</h2>
+        <p>Join thousands of learners building their future with CODEMATE.</p>
+        <a href="/signup" class="btn btn-primary btn-large">Create Your Free Account</a>
+    </div>
+</section>
+{% endblock %}

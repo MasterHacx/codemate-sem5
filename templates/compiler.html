@@ -1,0 +1,88 @@
+{% extends 'base_compiler.html' %}
+
+{% block title %}Online Code Compiler - CODEMATE{% endblock %}
+
+{% block styles %}
+    <!-- CodeMirror Editor Core & Theme CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/neat.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="compiler-container">
+    <div class="compiler-controls">
+        <a href="/" class="compiler-logo">CODEMATE</a>
+        <div class="mobile-tabs">
+            <button id="show-code-btn" class="mobile-tab-btn active">CODE</button>
+            <button id="show-io-btn" class="mobile-tab-btn">I/O</button>
+        </div>
+        <div class="controls-right">
+            <button id="ai-toggle-btn" class="btn btn-secondary"><i class="fa-solid fa-wand-magic-sparkles"></i> CODEMATE AI</button>
+            <select id="language-select" class="form-select" data-selected-language="{{ selected_language }}">
+                <option value="python" {{ 'selected' if selected_language == 'python' }}>Python</option>
+                <option value="cpp" {{ 'selected' if selected_language == 'cpp' }}>C++</option>
+                <option value="java" {{ 'selected' if selected_language == 'java' }}>Java</option>
+                <option value="kotlin" {{ 'selected' if selected_language == 'kotlin' }}>Kotlin</option>
+                <option value="javascript" {{ 'selected' if selected_language == 'javascript' }}>JavaScript</option>
+                <!--  languages options -->
+                <option value="go" {{ 'selected' if selected_language == 'go' }}>Go</option>
+                <option value="c" {{ 'selected' if selected_language == 'c' }}>C</option>
+                <option value="csharp" {{ 'selected' if selected_language == 'csharp' }}>C#</option>
+                <option value="rust" {{ 'selected' if selected_language == 'rust' }}>Rust</option>
+                <option value="swift" {{ 'selected' if selected_language == 'swift' }}>Swift</option>
+            </select>
+            <button class="theme-toggle" aria-label="Toggle dark/light theme"><i class="fas fa-moon"></i></button>
+        </div>
+        <button id="run-btn" class="btn btn-primary"><i class="fas fa-play"></i> Run</button>
+    </div>
+
+    <div class="compiler-body">
+        <div id="editor-pane" class="split mobile-pane active"><div id="code-editor"></div></div>
+        <div id="io-pane" class="split mobile-pane">
+            <div id="input-pane" class="split-io">
+                <label for="input-area">Input (STDIN)</label>
+                <textarea id="input-area"></textarea>
+            </div>
+            <div id="output-pane" class="split-io">
+                <label for="output-area">Output</label>
+                <pre id="output-area">Click "Run" to see the output.</pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="ai-panel" class="ai-panel">
+        <div class="ai-panel-header">
+            <h4>CODEMATE AI</h4>
+            <button id="ai-close-btn" class="close-btn">&times;</button>
+        </div>
+        <div class="ai-panel-body"><div class="ai-placeholder"><p>Ask me anything about your code!</p></div></div>
+        <div class="ai-panel-footer">
+            <div class="ai-input-wrapper">
+                <textarea id="ai-input" placeholder="Explain this code..." rows="1"></textarea>
+                <button id="ai-send-btn" class="ai-send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- External Libraries -->
+    <script src="https://unpkg.com/split.js/dist/split.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <!-- CodeMirror Language Modes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/clike/clike.min.js"></script> <!-- Handles C, C++, Java, Kotlin, C# -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <!-- languages scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/go/go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/rust/rust.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/swift/swift.min.js"></script>
+    
+    <!-- Custom Brain for the Compiler -->
+    <script src="{{ url_for('static', filename='js/compiler.js') }}"></script>
+{% endblock %}

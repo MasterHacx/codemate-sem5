@@ -1,0 +1,49 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %}Edit Tutorial{% endblock %}
+
+{% block content %}
+    <h2>Edit Tutorial: {{ tutorial.title }}</h2>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+                <!-- We show existing IDs but make them readonly so they can't be changed -->
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Category</label>
+                        <input type="text" class="form-control" value="{{ ids.category }}" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Lesson</label>
+                        <input type="text" class="form-control" value="{{ ids.lesson }}" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Topic</label>
+                        <input type="text" class="form-control" value="{{ ids.topic }}" readonly>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Tutorial Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ tutorial.title }}" required>
+                </div>
+
+                 <!-- Add Order field -->
+                <div class="mb-3">
+                    <label for="order" class="form-label">Display Order</label>
+                    <input type="number" class="form-control" id="order" name="order" value="{{ tutorial.order | default(99) }}" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="content" class="form-label">Markdown Content</label>
+                    <!-- Pre-fill the textarea with existing content -->
+                    <textarea class="form-control" id="content" name="content" rows="15" required>{{ tutorial.content }}</textarea>
+                </div>
+                
+                <hr>
+                <button type="submit" class="btn btn-primary">Update Tutorial</button>
+                <a href="{{ url_for('admin.manage_tutorials') }}" class="btn btn-link">Cancel</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

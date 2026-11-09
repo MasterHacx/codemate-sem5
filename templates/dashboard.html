@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Dashboard - CODEMATE{% endblock %}
+
+{% block content %}
+    <!-- 1. The Profile Header -->
+    <section class="dashboard-profile">
+        <div class="container">
+            <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
+            <div class="profile-details">
+                <h2 id="user-name-heading">Loading...</h2>
+                <span class="profile-tag">Beginner Coder</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 2. The Progress Stats Section -->
+    <section class="dashboard-stats">
+        <div class="container">
+            <h2>Your Progress Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+                    <div class="stat-info">
+                        <span id="lessons-completed-stat" class="stat-number">0</span>
+                        <span class="stat-label">Lessons Completed</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-info">
+                        <span id="quizzes-passed-stat" class="stat-number">0</span>
+                        <span class="stat-label">Quizzes Passed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Progress Section -->
+    <section class="detailed-progress-section">
+        <div class="container">
+            <h2>Your Learning Progress</h2>
+            <!-- This grid will be filled by JavaScript -->
+            <div id="progress-cards-grid" class="progress-cards-grid">
+                <!-- Placeholder for loading state -->
+                <p class="loading-placeholder">Loading your progress...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Quick Actions Section -->
+    <section class="language-cards-section">
+        <div class="container">
+            <h2>Quick Actions <i class="fas fa-bolt" style="color:tomato;"></i></h2>
+            <div class="language-grid">
+                <a href="/playground" class="language-card">
+                    <div class="language-icon feature-icon"><i class="fas fa-play-circle"></i></div>
+                    <div class="language-name">Open Playground</div>
+                </a>
+                <a href="/#compilers-section" class="language-card">
+                    <div class="language-icon feature-icon"><i class="fas fa-terminal"></i></div>
+                    <div class="language-name">Access Compilers</div>
+                </a>
+                <a href="/tutorials/cheatsheet" class="language-card">
+                    <div class="language-icon feature-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="language-name">CheatSheets</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- "Continue Learning" Section -->
+    <section class="language-cards-section" id="tutorials-section">
+        <div class="container">
+            <h2>Continue Learning</h2>
+            <div class="language-grid">
+                <a href="/tutorials/python" class="language-card"><div class="language-icon"><img src="{{ url_for('static', filename='img/python.svg') }}" alt="Python Icon"></div><div class="language-name">Python</div></a>
+                <a href="/tutorials/cpp" class="language-card"><div class="language-icon"><img src="{{ url_for('static', filename='img/cpp.svg') }}" alt="C++ Icon"></div><div class="language-name">C++</div></a>
+                <a href="/tutorials/java" class="language-card"><div class="language-icon"><img src="{{ url_for('static', filename='img/java.svg') }}" alt="Java Icon"></div><div class="language-name">Java</div></a>
+                <a href="/tutorials/kotlin" class="language-card"><div class="language-icon"><img src="{{ url_for('static', filename='img/kotlin.svg') }}" alt="kotlin Icon"></div><div class="language-name">Kotlin</div></a>
+                <a href="/tutorials/html" class="language-card"><div class="language-icon"><img src="{{ url_for('static', filename='img/html5.svg') }}" alt="html Icon"></div><div class="language-name">HTML</div></a>
+                <a href="/tutorials/javascript" class="language-card"><div class="language-icon"><img src="{{ url_for('static', filename='img/javascript.svg') }}" alt="javascript Icon"></div><div class="language-name">Javascript</div></a>
+            </div>
+        </div>
+        <br><br>
+        <div class="container">
+            <h2>Explore Other Fields</h2>
+            <div class="language-grid">
+                <a href="/tutorials/programming" class="language-card"><div class="language-icon"><img src="{{ url_for('static', filename='img/programming.svg') }}" alt="Programming Icon"></div><div class="language-name">Introduction to Programming</div></a>
+                <a href="/tutorials/genai" class="language-card"><div class="language-icon"><img src="{{ url_for('static', filename='img/genai.svg') }}" alt="genai Icon"></div><div class="language-name">Generative AI</div></a>
+                <a href="/tutorials/cybersecurity" class="language-card"><div class="language-icon"><img src="{{ url_for('static', filename='img/cybersecurity.svg') }}" alt="cybersecurity Icon"></div><div class="language-name">Cyber Security</div></a>
+                <a href="/tutorials/markdown" class="language-card">
+                    <div class="language-icon">
+                        <img src="{{ url_for('static', filename='img/markdown.svg') }}" alt="markdown Icon">
+                    </div>
+                    <div class="language-name">Markdown</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- "Quick Access Compilers" Section -->
+    <section class="language-cards-section" id="compilers-section">
+        <div class="container">
+            <h2>Quick Access Compilers</h2>
+            <div class="language-grid">
+                <a href="/compiler/python" class="language-card"><div class="feature-icon" style="margin-bottom: 15px;"><i class="fas fa-terminal"></i></div><div class="language-name">Python Compiler</div></a>
+                <a href="/compiler/c" class="language-card"><div class="feature-icon" style="margin-bottom: 15px;"><i class="fas fa-terminal"></i></div><div class="language-name">C Compiler</div></a>
+                <a href="/compiler/cpp" class="language-card"><div class="feature-icon" style="margin-bottom: 15px;"><i class="fas fa-terminal"></i></div><div class="language-name">C++ Compiler</div></a>
+                <a href="/compiler/java" class="language-card"><div class="feature-icon" style="margin-bottom: 15px;"><i class="fas fa-terminal"></i></div><div class="language-name">Java Compiler</div></a>
+                <a href="/compiler/kotlin" class="language-card"><div class="feature-icon" style="margin-bottom: 15px;"><i class="fas fa-terminal"></i></div><div class="language-name">Kotlin Compiler</div></a>
+                <a href="/compiler/javascript" class="language-card"><div class="feature-icon" style="margin-bottom: 15px;"><i class="fas fa-terminal"></i></div><div class="language-name">Javascript Compiler</div></a>
+                <a href="/compiler/go" class="language-card"><div class="feature-icon" style="margin-bottom: 15px;"><i class="fas fa-terminal"></i></div><div class="language-name">Go Compiler</div></a>
+                <a href="/compiler/rust" class="language-card"><div class="feature-icon" style="margin-bottom: 15px;"><i class="fas fa-terminal"></i></div><div class="language-name">Rust Compiler</div></a>
+                <a href="/compiler/swift" class="language-card"><div class="feature-icon" style="margin-bottom: 15px;"><i class="fas fa-terminal"></i></div><div class="language-name">Swift Compiler</div></a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <!--  Load our dedicated script for the dashboard -->
+    <script src="{{ url_for('static', filename='js/dashboard-progress.js') }}" defer></script>
+{% endblock %}

@@ -1,0 +1,7 @@
+Flask
+python-dotenv
+firebase-admin
+requests
+Markdown
+google-generativeai
+pymdown-extensions

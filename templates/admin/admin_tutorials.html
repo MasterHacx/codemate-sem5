@@ -1,0 +1,52 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Manage Tutorials{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Manage Tutorials</h2>
+        <a href="{{ url_for('admin.add_tutorial') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add New Tutorial
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <p>Manage all Markdown-based tutorials from this panel.</p>
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Lesson</th>
+                        <th>Topic</th>
+                        <th>Title</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tutorial in tutorials %}
+                    <tr>
+                        <td>{{ tutorial.category | title }}</td>
+                        <td>{{ tutorial.lesson | title }}</td>
+                        <td>{{ tutorial.topic | title }}</td>
+                        <td>{{ tutorial.title }}</td>
+                        <td>
+                          
+<a href="{{ url_for('admin.edit_tutorial', category=tutorial.category, lesson=tutorial.lesson, topic=tutorial.topic) }}"
+   class="btn btn-sm btn-secondary">Edit</a>
+                           <a href="{{ url_for('admin.delete_tutorial', category=tutorial.category, lesson=tutorial.lesson, topic=tutorial.topic) }}"
+   class="btn btn-sm btn-danger"
+   onclick="return confirm('Are you sure you want to delete this tutorial? This cannot be undone.')">Delete</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">No tutorials found in the database.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

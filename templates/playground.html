@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Practice Playground - CODEMATE{% endblock %}
+
+{% block content %}
+    <!-- 1. Playground Hero Section -->
+    <section class="playground-header">
+        <div class="container">
+            <h2>Practice Playground</h2>
+            <p>Test your knowledge. Select a topic from the filters below to start a quiz.</p>
+        </div>
+    </section>
+
+    <!-- 2. The Dynamic Filters (Dropdowns) -->
+    <section class="quiz-filters">
+        <div class="container">
+            <div class="filter-grid">
+                <select id="category-select" class="quiz-select">
+                    <option value="">Select Tutorial</option>
+                    <!-- Options will be loaded by JavaScript -->
+                </select>
+                <select id="lesson-select" class="quiz-select" disabled>
+                    <option value="">Select Lesson</option>
+                    <!-- Options will be loaded by JavaScript -->
+                </select>
+                <select id="topic-select" class="quiz-select" disabled>
+                    <option value="">Select Topic</option>
+                    <!-- Options will be loaded by JavaScript -->
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. The Quiz Container -->
+    <main class="quiz-main-content">
+        <div class="container">
+            <div id="quiz-container" class="quiz-container">
+                <!-- Quiz questions will be loaded here by JavaScript -->
+                <p class="quiz-placeholder">Please select a topic to begin a quiz.</p>
+            </div>
+            <div id="quiz-result" class="quiz-result"></div>
+            <button id="submit-quiz-btn" class="btn btn-primary btn-large" style="display: none;">Submit Answers</button>
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    <!-- This page needs its own "brain" -->
+    <script src="{{ url_for('static', filename='js/playground.js') }}" defer></script>
+{% endblock %}
